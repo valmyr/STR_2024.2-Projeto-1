@@ -1,5 +1,6 @@
 #include <iostream>
 #include <pthread.h>
+#include <queue>
 #include <semaphore.h>
 #include <unistd.h> // For sleep()
 
