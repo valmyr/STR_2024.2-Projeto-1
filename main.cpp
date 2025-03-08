@@ -4,6 +4,7 @@
 #include <condition_variable>
 
 
+
 class Semaforo {
 private:
     std::mutex mtx;
