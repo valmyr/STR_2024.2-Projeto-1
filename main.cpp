@@ -2,47 +2,36 @@
 #include <pthread.h>
 #include <queue>
 #include <semaphore.h>
+#include<queue>
 #include <unistd.h> // For sleep()
+using namespace std;
 
-sem_t semaphore; // Semaphore
-int count = 0;
 
-void* producer(void* arg) {
-    while (true) {
-        sleep(1); // Simulate work
-        count++;
-        std::cout << "Producer: Producing item. It has "<< count << " itens\n";
-        sem_post(&semaphore); // Release (increment) semaphore
-    }
-    return nullptr;
-}
+int andarAtual;
+int andarDestino;
+static int andarCorrente = 0;
+static int idUser = 0;
+static void *solicitacao(void *arg);
+void mover_para_solictacao();
+void mover_para_destino();
 
-void* consumer(void* arg) {
-    while (true) {
-        sem_wait(&semaphore); // Wait (decrement) semaphore
-        count--;
-        std::cout << "Consumer: Consuming item. It has "<< count << " itens\n";
-        sleep(1); // Simulate work
-    }
-    return nullptr;
-}
+
 
 int main() {
-    pthread_t producerThread, consumerThread;
-
-    // Initialize semaphore with value 0
-    sem_init(&semaphore, 0, 0);
-
-    // Create threads
-    pthread_create(&producerThread, nullptr, producer, nullptr);
-    pthread_create(&consumerThread, nullptr, consumer, nullptr);
-
-    // Join threads (infinite loop, will run forever)
-    pthread_join(producerThread, nullptr);
-    pthread_join(consumerThread, nullptr);
-
-    // Destroy semaphore (not reached in this example)
-    sem_destroy(&semaphore);
-
-    return 0;
+    srand(time(NULL));
+    pthread_t soliciatcaoThread;
+    pthread_create(&soliciatcaoThread, nullptr,solicitacao, nullptr);
+    pthread_join(soliciatcaoThread, nullptr);
+    //return 0;
+}
+static void *solicitacao(void *arg){
+    while(true){
+        idUser+=1;
+        andarDestino = rand()%6;
+        do{
+            andarAtual =rand()%6;
+        }while(andarDestino == andarAtual);
+        cout<<"[Usuario "<< idUser <<" ] chamando o elevador do andar "<< andarCorrente << " para o andar "<<andarDestino<<endl;
+    }
+    return nullptr;
 }
