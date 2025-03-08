@@ -1,35 +1,47 @@
 #include <iostream>
-#include <thread>
-#include <mutex>
-#include <condition_variable>
+#include <pthread.h>
+#include <semaphore.h>
+#include <unistd.h> // For sleep()
 
+sem_t semaphore; // Semaphore
+int count = 0;
 
-class Semaforo {
-private:
-    std::mutex mtx;
-    std::condition_variable cv;
-    int contador;
-
-public:
-    Semaforo(int valor) : contador(valor) {}
-
-    void acquire() {
-        std::unique_lock<std::mutex> lock(mtx);
-        cv.wait(lock, [this]() { return contador > 0; });
-        contador--;
+void* producer(void* arg) {
+    while (true) {
+        sleep(1); // Simulate work
+        count++;
+        std::cout << "Producer: Producing item. It has "<< count << " itens\n";
+        sem_post(&semaphore); // Release (increment) semaphore
     }
+    return nullptr;
+}
 
-    void release() {
-        std::unique_lock<std::mutex> lock(mtx);
-        contador++;
-        cv.notify_one();
+void* consumer(void* arg) {
+    while (true) {
+        sem_wait(&semaphore); // Wait (decrement) semaphore
+        count--;
+        std::cout << "Consumer: Consuming item. It has "<< count << " itens\n";
+        sleep(1); // Simulate work
     }
-};
+    return nullptr;
+}
 
-Semaforo semaforo(2); // Permite até 2 threads simultâneas
-using namespace std;
+int main() {
+    pthread_t producerThread, consumerThread;
 
-int main(){
+    // Initialize semaphore with value 0
+    sem_init(&semaphore, 0, 0);
+
+    // Create threads
+    pthread_create(&producerThread, nullptr, producer, nullptr);
+    pthread_create(&consumerThread, nullptr, consumer, nullptr);
+
+    // Join threads (infinite loop, will run forever)
+    pthread_join(producerThread, nullptr);
+    pthread_join(consumerThread, nullptr);
+
+    // Destroy semaphore (not reached in this example)
+    sem_destroy(&semaphore);
 
     return 0;
 }
