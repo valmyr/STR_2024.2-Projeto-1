@@ -27,7 +27,7 @@ public:
 };
 
 Semaforo semaforo(2); // Permite até 2 threads simultâneas
-//using namespace std;
+using namespace std;
 
 int main(){
 
