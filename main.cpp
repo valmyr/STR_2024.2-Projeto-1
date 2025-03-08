@@ -2,6 +2,7 @@
 #include <thread>
 #include <mutex>
 #include <condition_variable>
+#include<semaphore.h>
 
 
 class Semaforo {
