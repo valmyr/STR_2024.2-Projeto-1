@@ -4,33 +4,34 @@
 #include<queue>
 #include <unistd.h> // For sleep()
 using namespace std;
-struct Usuario{
-    int andar_atual;
-    int andar_alvo;
-};
 
-class Elevador{
-    public:
-        int andar_corrente;
-        int idUser;
-        void solicitacao(int,int);
-    private:
-        pthread_t Requisicao;
-        void mover_para_solictacao();
-        void mover_para_destino();
-    Elevador();
-    ~Elevador();
-};
-Elevador::Elevador(){andar_corrente = 0; idUser = 0;}
-Elevador::~Elevador(){}
-void Elevador::solicitacao(int andarAtual, int andarDestino){
-    idUser+=1;
-    cout<<"[Usuario "<< idUser <<" ] chamando o elevador do andar"<< andar_corrente << "para o andar"<<andarDestino<<endl;
 
-}
+int andarAtual;
+int andarDestino;
+static int andarCorrente = 0;
+static int idUser = 0;
+static void *solicitacao(void *arg);
+void mover_para_solictacao();
+void mover_para_destino();
+
+
 
 int main() {
-
-
-    return 0;
+    srand(time(NULL));
+    pthread_t soliciatcaoThread;
+    pthread_create(&soliciatcaoThread, nullptr,solicitacao, nullptr);
+    pthread_join(soliciatcaoThread, nullptr);
+    //return 0;
+}
+static void *solicitacao(void *arg){
+    while(true){
+        idUser+=1;
+        andarDestino = rand()%6;
+        do{
+            andarAtual =rand()%6;
+        }while(andarDestino == andarAtual);
+        cout<<"[Usuario "<< idUser <<" ] chamando o elevador do andar "<< andarCorrente << " para o andar "<<andarDestino<<endl;
+        sleep(rand()%4);
+    }
+    return nullptr;
 }
