@@ -10,6 +10,7 @@ struct Usuario{
     int idUser;
 };
 queue<Usuario> fila;
+sem_t semaphore;
 int andarAtual;
 int andarDestino;
 static int andarCorrente = 0;
@@ -24,42 +25,41 @@ void mover_para_destino();
 int main() {
     srand(time(NULL));
     pthread_t soliciatcaoThread, elevadorThread;
+    sem_init(&semaphore,0,0);
     pthread_create(&soliciatcaoThread, nullptr,solicitacao, nullptr);
     pthread_create(&elevadorThread, nullptr, buscaUsuario, nullptr);
     pthread_join(soliciatcaoThread, nullptr);
     pthread_join(elevadorThread, nullptr);
+    sem_destroy(&semaphore);
     return 0;
 }
 static void *solicitacao(void *arg){
     Usuario user;
+    
     while(true){
         idUser+=1;
         andarDestino = rand()%6;
         do{
             andarAtual =rand()%6;
         }while(andarDestino == andarAtual);
-        cout<<"[Usuario "<< idUser <<"] Chamando o elevador do andar  "<< andarAtual << "  para o andar    "<<andarDestino<<endl;
-
-        sleep(rand()%4+4);
+        cout<<"[Usuario "<< idUser <<"] Chamando o elevador do andar "<< andarAtual << " para o andar "<<andarDestino<<endl;
+        sleep(rand()%10);
         user.andarAtual = andarAtual;
         user.andarDestino = andarDestino;
         user.idUser = idUser;
-        
         fila.push(user);
-        
-        cout<< fila.size()<<endl;
+        sem_post(&semaphore);
     }
     return nullptr;
 }
-
 static void *buscaUsuario(void *arg){
     Usuario user;
     while(true){
-        if(fila.size() > 0)
-        {
-            user = fila.front();
 
-        cout<<endl<<"[Elevador]" <<" Nova chamada recebida de Usuário  "<< user.idUser << ":  Andar  "<<user.andarAtual<<" -> "<<user.andarDestino<<"."<<endl;
+        sem_wait(&semaphore);
+        user = fila.front();
+
+        cout<<"[Elevador]" <<" Nova chamada recebida de Usuário  "<< user.idUser << ":  Andar  "<<user.andarAtual<<" -> "<<user.andarDestino<<"."<<endl;
         sleep(1);
         cout<<"[Elevador] Movendo-se para o andar "<<user.andarAtual<<"..."<<endl;
         andarCorrente = user.andarAtual;
@@ -77,7 +77,6 @@ static void *buscaUsuario(void *arg){
         cout<<"[Elevador] Chegou ao andar "<<andarCorrente<<". Usuário "<<user.idUser<<" desembarcou."<<endl;
         sleep(1);
         fila.pop();
-        }
         
     }
     return nullptr;
