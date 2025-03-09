@@ -28,7 +28,7 @@ Para copiar esse repositório remoto na sua máquina local, utilize o comando `g
 git clone https://github.com/valmyr/STR_2024.2-Projeto-1.git
 ```
 
-Em seguida, para compilar o código em sua máquina acesse o diretório onde você executou o git clone e execute o seguinte comando no terminal: \
+Em seguida, para compilar o código em sua máquina acesse o diretório onde você executou o git clone e execute o seguinte comando no terminal: 
 ```
 g++ -pthread -lpthread -lrt -o main.o main.cpp
 ```
