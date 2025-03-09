@@ -4,8 +4,12 @@
 #include<queue>
 #include <unistd.h> // For sleep()
 using namespace std;
-
-
+struct Usuario{
+    int andarAtual;
+    int andarDestino;
+    int idUser;
+};
+queue<Usuario> fila;
 int andarAtual;
 int andarDestino;
 static int andarCorrente = 0;
@@ -21,9 +25,10 @@ int main() {
     pthread_t soliciatcaoThread;
     pthread_create(&soliciatcaoThread, nullptr,solicitacao, nullptr);
     pthread_join(soliciatcaoThread, nullptr);
-    //return 0;
+    return 0;
 }
 static void *solicitacao(void *arg){
+    Usuario user;
     while(true){
         idUser+=1;
         andarDestino = rand()%6;
@@ -32,6 +37,10 @@ static void *solicitacao(void *arg){
         }while(andarDestino == andarAtual);
         cout<<"[    Usuario "<< idUser <<"  ] Chamando o elevador do andar  "<< andarCorrente << "  para o andar    "<<andarDestino<<endl;
         sleep(rand()%4);
+        user.andarAtual = andarAtual;
+        user.andarDestino = andarDestino;
+        user.idUser = idUser;
+        fila.push(user);
     }
     return nullptr;
 }
