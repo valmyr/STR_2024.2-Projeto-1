@@ -30,7 +30,7 @@ static void *solicitacao(void *arg){
         do{
             andarAtual =rand()%6;
         }while(andarDestino == andarAtual);
-        cout<<"[Usuario "<< idUser <<" ] chamando o elevador do andar "<< andarCorrente << " para o andar "<<andarDestino<<endl;
+        cout<<"[    Usuario "<< idUser <<"  ] Chamando o elevador do andar  "<< andarCorrente << "  para o andar    "<<andarDestino<<endl;
         sleep(rand()%4);
     }
     return nullptr;
