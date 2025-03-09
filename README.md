@@ -12,13 +12,13 @@ Neste projeto, vamos desenvolver um simulador de elevador concorrente utilizando
   * **iostream**: Parte da biblioteca input/output, sendo responsável pelas entradas e saídas do programa.
     * Principais funções: `cout` e `cin`;
   * **pthread.h**: Contém declarações de função e mapeamentos para interfaces de threading. O cabeçalho inclui o cabeçalho sched.h.
-    * Principais funções: `pthread_create`, `pthread_join`;
+    * Principais funções: `pthread_create` e `pthread_join`;
   * **semaphore.h**: Fornece funções para manipulação de semaforos em sistemas baseados em Unix/Linux, permitindo a sincronização de processos e threads.
-    * Principais funções: `sem_wait`, `sem_post`;
+    * Principais funções: `sem_wait` e `sem_post`;
   * **queue**: Fornece e facilita implementações de estruturas de dados do tipo fila.
     * Principais funções: `push`, `pop` e `front`;
   * **unistd.h**: Permite acessar a API do sistema operacional POSIX.
-    * Principais funções: `sleep`, `close`;
+    * Principais funções: `sleep` e `close`;
 
 ## Clonando um Repositório Git
 
