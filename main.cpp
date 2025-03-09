@@ -15,7 +15,6 @@ static void *solicitacao(void *arg);
 void mover_para_solictacao();
 void mover_para_destino();
 
-
 int main() {
     srand(time(NULL));
     pthread_t soliciatcaoThread;
@@ -31,6 +30,7 @@ static void *solicitacao(void *arg){
             andarAtual =rand()%6;
         }while(andarDestino == andarAtual);
         cout<<"[Usuario "<< idUser <<" ] chamando o elevador do andar "<< andarCorrente << " para o andar "<<andarDestino<<endl;
+
     }
     return nullptr;
 }
