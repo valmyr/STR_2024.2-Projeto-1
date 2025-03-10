@@ -17,10 +17,6 @@ static int andarCorrente = 0;
 static int idUser = 0;
 static void *solicitacao(void *arg);
 static void *buscaUsuario(void *arg);
-void mover_para_solictacao();
-void mover_para_destino();
-
-
 
 int main() {
     srand(time(NULL));
