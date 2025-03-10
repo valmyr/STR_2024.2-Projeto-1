@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 #include <pthread.h>
 #include <semaphore.h>
 #include<queue>
@@ -38,7 +39,7 @@ static void *solicitacao(void *arg){
         do{
             andarAtual =rand()%6;
         }while(andarDestino == andarAtual);
-        cout<<"[Usuario "<< idUser <<"] Chamando o elevador do andar "<< andarAtual << " para o andar "<<andarDestino<<endl;
+        cout<<"\033[0m\033[33;44m[Usuario "<< idUser <<"] Chamando o elevador do andar "<< andarAtual << " para o andar "<<andarDestino<<"\033[0m"<<endl;
         sleep(rand()%10);
         user.andarAtual = andarAtual;
         user.andarDestino = andarDestino;
@@ -66,11 +67,11 @@ static void *buscaUsuario(void *arg){
 
         for(int i=0; i < distanciaRelativa; i++){
             (andarCorrente > user.andarDestino) ?  andarCorrente-- :  andarCorrente++;
-            cout<<"[Elevador] Movendo-se para o andar "<<andarCorrente<<"..."<<endl;
+            cout<<"\033[0m\033[31m"<<"[Elevador] Movendo-se para o andar "<<andarCorrente<<"...\033[0m"<<endl;
             sleep(1);
         }
 
-        cout<<"[Elevador] Chegou ao andar "<<andarCorrente<<". Usuário "<<user.idUser<<" desembarcou."<<endl;
+        cout<<"\033[0m\033[32m"<<"[Elevador] Chegou ao andar "<<andarCorrente<<". Usuário "<<user.idUser<<" desembarcou.\033[0m"<<endl;
         sleep(1);
         fila.pop();
         
