@@ -30,7 +30,7 @@ git clone https://github.com/valmyr/STR_2024.2-Projeto-1.git
 
 Em seguida, para compilar o código em sua máquina acesse o diretório onde você executou o git clone e execute o seguinte comando no terminal: 
 ```
-g++ -pthread -lpthread -lrt -o main.o main.cpp
+g++ -pthread -o main.o main.cpp
 ```
 ou
 ```
@@ -47,6 +47,17 @@ thread que simula o elevador (responsável por atender as solicitações) só pr
 <p align="justify"> Cada movimentação do elevador entre andares é exibida, mostrando ao usuário o andamento da viagem, com o elevador se movendo de um andar a outro até chegar ao destino. Após o desembarque do usuário, a solicitação é removida da fila, e o elevador 
 retorna ao estado de espera para atender a próxima solicitação. Esse processo continua indefinidamente, simulando o comportamento de um sistema de multitarefas onde várias solicitações podem ser feitas ao mesmo tempo e são atendidas conforme a ordem de 
 chegada. </p>
+
+## Código de Cores
+
+<p align="center">
+  <img src=https://github.com/valmyr/STR_2024.2-Projeto-1/blob/main/Img/OutputSTR24_2.png alt="Saída do programa."/>
+</p>
+
+🔵 Azul: Solicitação do usuário. \
+⚪ Branco: Elevador se deslocando até o usuário embarcar. \
+🔴 Vermelho: Elevador em movimento do andar de embarque ao destino. \
+🟢 Verde: Usuário desembarcando.
 
 ## Vídeo
 link
