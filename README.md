@@ -1,7 +1,7 @@
 # Equipe: 
 
-Arthur Henrique Rocha Alves     - 119211079
-José Andrew Pessoa De Oliveira  - 118210339
+Arthur Henrique Rocha Alves     - 119211079\
+José Andrew Pessoa De Oliveira  - 118210339\
 Valmir Ferreira da Silva        - 119211110
         
 # Controle de Elevador Simplificado
