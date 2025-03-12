@@ -1,1 +1,0 @@
-g++ -pthread -o main.o main.cpp && ./main.o

@@ -1,0 +1,1 @@
+g++ -pthread -o src/main.o src/main.cpp && ./src/main.o

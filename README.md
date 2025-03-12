@@ -40,7 +40,7 @@ g++ -pthread -o main.o main.cpp
 ```
 ou
 ```
-bash src/run.sh
+bash run.sh
 ```
 
 ## Funcionamento do Sistema
