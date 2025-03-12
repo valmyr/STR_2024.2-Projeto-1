@@ -39,16 +39,14 @@ bash run.sh
 
 ## Funcionamento do Sistema
 
-O sistema simula o funcionamento de um elevador com múltiplos usuários fazendo solicitações em diferentes andares. Existem duas threads principais no programa: uma para gerar as solicitações dos usuários e outra para atender essas solicitações. A thread responsável pelas 
-solicitações cria usuários com andares de origem e destino aleatórios, adicionando suas informações a uma fila. A cada ciclo, um novo usuário é criado, e sua solicitação é enfileirada após um tempo aleatório. O semáforo é utilizado para sincronizar o processo, garantindo que a 
-thread que simula o elevador (responsável por atender as solicitações) só processe a próxima solicitação quando o semáforo for sinalizado.
+<p align="justify"> O sistema simula o funcionamento de um elevador com múltiplos usuários fazendo solicitações em diferentes andares. Existem duas threads principais no programa: uma para gerar as solicitações dos usuários e outra para atender essas solicitações. A thread responsável pelas solicitações cria usuários com andares de origem e destino aleatórios, adicionando suas informações a uma fila. A cada ciclo, um novo usuário é criado, e sua solicitação é enfileirada após um tempo aleatório. O semáforo é utilizado para sincronizar o processo, garantindo que a 
+thread que simula o elevador (responsável por atender as solicitações) só processe a próxima solicitação quando o semáforo for sinalizado. </p>
 
-A outra thread, a que simula o elevador, aguarda até que haja uma solicitação na fila, o que é indicado pelo semáforo. Quando o semáforo é sinalizado, o elevador pega a primeira solicitação da fila e começa a simular o movimento até o andar de origem do usuário. Depois disso,
-ele recebe o usuário e se move até o seu destino, com o movimento entre os andares sendo simulado através de um laço que aumenta ou diminui o andar atual do elevador, dependendo da direção do movimento.
+<p align="justify">  A outra thread, a que simula o elevador, aguarda até que haja uma solicitação na fila, o que é indicado pelo semáforo. Quando o semáforo é sinalizado, o elevador pega a primeira solicitação da fila e começa a simular o movimento até o andar de origem do usuário. Depois disso,ele recebe o usuário e se move até o seu destino, com o movimento entre os andares sendo simulado através de um laço que aumenta ou diminui o andar atual do elevador, dependendo da direção do movimento.</p>
 
-Cada movimentação do elevador entre andares é exibida, mostrando ao usuário o andamento da viagem, com o elevador se movendo de um andar a outro até chegar ao destino. Após o desembarque do usuário, a solicitação é removida da fila, e o elevador 
-retorna ao estado de espera para atender a próxima solicitação. Esse processo continua indefinidamente, simulando o comportamento de um sistema de elevador multitarefa onde várias solicitações podem ser feitas ao mesmo tempo e são atendidas conforme a ordem de 
-chegada.
+<p align="justify"> Cada movimentação do elevador entre andares é exibida, mostrando ao usuário o andamento da viagem, com o elevador se movendo de um andar a outro até chegar ao destino. Após o desembarque do usuário, a solicitação é removida da fila, e o elevador 
+retorna ao estado de espera para atender a próxima solicitação. Esse processo continua indefinidamente, simulando o comportamento de um sistema de multitarefas onde várias solicitações podem ser feitas ao mesmo tempo e são atendidas conforme a ordem de 
+chegada. </p>
 
 ## Vídeo
 link
