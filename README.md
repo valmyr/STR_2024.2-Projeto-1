@@ -3,7 +3,12 @@
 Arthur Henrique Rocha Alves     - 119211079\
 José Andrew Pessoa De Oliveira  - 118210339\
 Valmir Ferreira da Silva        - 119211110
-        
+
+
+# Vídeo de Demonstração
+Para uma explicação detalhada do funcionamento do sistema e uma demonstração da simulação,
+[Vídeo de Demonstração do Funcionamento](https://www.youtube.com/watch?v=f192CJpGVXY&ab_channel=JoseAndrewPessoaDeOliveira)
+
 # Controle de Elevador Simplificado
 
 Neste projeto, vamos desenvolver um simulador de elevador concorrente utilizando linguagem C e semáforos no Linux. O sistema contará com um único elevador que atende múltiplos usuários concorrentes em um prédio de 5 andares. O objetivo é gerenciar chamadas de forma organizada, garantindo que o elevador atenda os usuários corretamente sem conflitos entre threads.
