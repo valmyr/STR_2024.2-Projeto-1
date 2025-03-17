@@ -70,5 +70,3 @@ chegada. </p>
 🔴 Vermelho: Elevador em movimento do andar de embarque ao destino. \
 🟢 Verde: Usuário desembarcando.
 
-## Vídeo
-link
